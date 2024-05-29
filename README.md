@@ -25,3 +25,33 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Project Structure /src directory
+```bash
+src/
+├── app/
+│   ├── core/                 # Core module (singleton services, etc.)
+│   │   ├── services/
+│   │   ├── interceptors/
+│   │   └── guards/
+│   ├── features/             # Feature modules
+│   │   ├── feature1/
+│   │   └── feature2/
+│   ├── shared/               # Shared module (common components, pipes, directives)
+│   ├── assets/               # Static assets (images, icons, etc.)
+│   ├── environments/         # Environment-specific configuration
+│   ├── app-routing.module.ts # App-level routing module
+│   ├── app.component.html    # Root component template
+│   ├── app.component.ts      # Root component class
+│   └── app.module.ts         # Root module
+├── assets/                   # Global static assets
+├── environments/             # Environment configuration files
+├── favicon.ico
+├── index.html                # Main HTML file
+├── main.ts                   # Main entry point
+├── polyfills.ts              # Polyfills for browser compatibility
+├── styles.scss               # Global styles
+├── test.ts                   # Test entry point
+└── tsconfig.app.json         # TypeScript configuration for the app
+
+```

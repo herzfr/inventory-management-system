@@ -1,0 +1,42 @@
+<div>
+    <mat-card class="login-card">
+        <mat-card-header>
+            <mat-card-subtitle>Inventory Management System</mat-card-subtitle>
+            <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>Please fill in the username and password correctly</p>
+
+            <div class="form-container">
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter your username</mat-label>
+                    <input matInput placeholder="johndoe77" [formControl]="username" required>
+                    <mat-icon matSuffix>person</mat-icon>
+                    <ng-container *ngIf="username.errors && username.dirty || username.touched">
+                        <mat-error *ngFor="let error of username.errors | errorValidator">{{ error }}</mat-error>
+                    </ng-container>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <ng-container *ngIf="password.errors && username.dirty || username.touched">
+                        <mat-error *ngFor="let error of password.errors | errorValidator">{{ error }}</mat-error>
+                    </ng-container>
+                </mat-form-field>
+            </div>
+            <mat-divider></mat-divider>
+        </mat-card-content>
+        <mat-card-actions>
+            <button (click)="login()" mat-button [disabled]="username.invalid || password.invalid || username.pristine || password.pristine || loading">Sign In</button>
+            <mat-error *ngIf="invalid">Username or Password incorrect !!</mat-error>
+        </mat-card-actions>
+        <mat-card-footer>
+            <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+        </mat-card-footer>
+    </mat-card>
+</div>
