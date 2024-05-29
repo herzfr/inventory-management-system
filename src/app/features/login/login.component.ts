@@ -48,7 +48,6 @@ export class LoginComponent {
       };
       this.signinSubscription = this.userservice.signin(user)
         .subscribe((result) => {
-          console.log(result)
           if (result.status.includes("00")) {
             this.invalid = false 
             this.authservice.doLogged(result.data as UserLoginInterface)

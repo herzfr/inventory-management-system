@@ -4,13 +4,12 @@ import { authGuard } from './core/guards/auth.guard';
 import { InventoryComponent } from './features/inventory/inventory.component';
 import { LoginComponent } from './features/login/login.component';
 import { roleGuard } from './core/guards/role.guard';
-import { loginGuard } from './core/guards/login.guard';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    canDeactivate: [loginGuard],
+    canActivate: [authGuard],
     loadChildren: () =>
       import('./features/login/login.module').then((m) => m.LoginModule),
   },
@@ -23,6 +22,7 @@ const routes: Routes = [
       import('./features/inventory/inventory.module').then((m) => m.InventoryModule),
   },
   { path: '', pathMatch: 'full', redirectTo: '/inventory'},
+  { path: '**', pathMatch: 'full', redirectTo: '/inventory'},
 ];
 
 @NgModule({
