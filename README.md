@@ -2,6 +2,41 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.
 
+### Running Server
+```bash
+npm run server
+````
+
+### Running Angular
+```bash
+npm run start | ng serve
+````
+
+### Username & Password
+```bash
+{
+    "users": [
+    {
+      "username": "adriana",
+      "password": "123456",
+      "roles": ["admin", "staff"],
+      "name": "Adriana Romana"
+    },
+    {
+      "username": "john",
+      "password": "654321",
+      "roles": ["admin"],
+      "name": "John Doe"
+    },
+    {
+      "username": "evan",
+      "password": "123123",
+      "roles": ["staff"],
+      "name": "Evan Smith"
+    }
+}
+````
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
@@ -35,8 +70,10 @@ src/
 │   │   ├── interceptors/
 │   │   └── guards/
 │   ├── features/             # Feature modules
-│   │   ├── feature1/
-│   │   └── feature2/
+│   │   ├── inventory/
+│   │   └── login/
+│   │   └── sales/
+│   │   └── supplier/
 │   ├── shared/               # Shared module (common components, pipes, directives)
 │   ├── assets/               # Static assets (images, icons, etc.)
 │   ├── environments/         # Environment-specific configuration
