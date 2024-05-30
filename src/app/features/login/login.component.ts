@@ -17,7 +17,6 @@ import { CustomValidators } from 'src/app/shared/utilities/custom-validator.util
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-
   private signinSubscription: Subscription | undefined;
 
   hide: boolean = true;
@@ -46,16 +45,18 @@ export class LoginComponent {
         username: this.username.value,
         password: this.password.value,
       };
-      this.signinSubscription = this.userservice.signin(user)
+      this.signinSubscription = this.userservice
+        .signin(user)
         .subscribe((result) => {
-          if (result.status.includes("00")) {
-            this.invalid = false 
-            this.authservice.doLogged(result.data as UserLoginInterface)
-            this.router.navigate(['inventory'])
+          if (result.status.includes('00')) {
+            this.invalid = false;
+            this.authservice.doLogged(result.data as UserLoginInterface);
+            this.router.navigate(['inventory']);
           } else {
-            this.invalid = true
+            this.invalid = true;
+            this.loading = false;
           }
-      })
+        });
     }, 1000); // Adjust the time as per your requirement
   }
 
@@ -65,5 +66,4 @@ export class LoginComponent {
       this.signinSubscription.unsubscribe();
     }
   }
-
 }

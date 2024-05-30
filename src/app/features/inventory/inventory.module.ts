@@ -3,8 +3,11 @@ import { CommonModule } from '@angular/common';
 import { InventoryComponent } from './inventory.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
-
+// const routes: Routes = [
+//   { path: ':mode', component: InventoryComponent},
+// ]
 
 @NgModule({
   declarations: [
@@ -12,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
+    // RouterModule.forChild(routes),
     SharedModule,
     ReactiveFormsModule,
   ]

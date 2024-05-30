@@ -6,6 +6,10 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ItemCardComponent } from './components/item-card/item-card.component';
 import { ViewItemComponent } from './components/dialogs/view-item/view-item.component';
 import { ConfirmationComponent } from './components/dialogs/confirmation/confirmation.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { UuidMaskPipe } from './pipes/uuid-mask.pipe';
+import { CustomDatePipe } from './pipes/custom-date.pipe';
 
 // Shared Module
 // ----------------------------------------------------------------------------------------------------------------
@@ -19,25 +23,30 @@ import { ConfirmationComponent } from './components/dialogs/confirmation/confirm
     ToolbarComponent,
     ItemCardComponent,
     ViewItemComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    UuidMaskPipe,
+    CustomDatePipe,
   ],
-  imports: [
-    CommonModule,
-    MaterialModule
-  ],
+  imports: [CommonModule, MaterialModule, RouterModule, FormsModule],
   exports: [
-    MaterialModule, 
-    ErrorValidatorPipe, 
+    // share module
+    MaterialModule,
+
+    // share module
+    ErrorValidatorPipe,
+    UuidMaskPipe,
+    CustomDatePipe,
+
+    // share component
     ToolbarComponent,
     ItemCardComponent,
-    ViewItemComponent
+    ViewItemComponent,
   ],
   providers: [
     {
       provide: LOCALE_ID,
-      useValue: 'en-US' // 'de-DE' for Germany, 'fr-FR' for France ...
+      useValue: 'en-US', // 'en-US' for USD
     },
   ],
-  
 })
-export class SharedModule { }
+export class SharedModule {}

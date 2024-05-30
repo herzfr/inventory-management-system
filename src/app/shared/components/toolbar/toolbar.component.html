@@ -5,8 +5,8 @@
         <span class="example-spacer"></span>
         <div class="toolbar-side-menu">
             <span>{{ user.name }}</span>
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-                <mat-icon>menu</mat-icon>
+            <button (click)="logout()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                <mat-icon>logout</mat-icon>
               </button>
         </div>
       </mat-toolbar-row>
@@ -14,12 +14,9 @@
       <mat-toolbar-row class="secondary-row">
         <section>
             <div class="menu-row">
-              <button mat-button>Basic</button>
-              <button mat-button color="primary">Primary</button>
-              <button mat-button color="accent">Accent</button>
-              <button mat-button color="warn">Warn</button>
-              <button mat-button disabled>Disabled</button>
-              <a mat-button href="https://www.google.com/" target="_blank">Link</a>
+              <a [routerLink]="['/inventory']" routerLinkActive="router-link-active"  mat-button color="primary">Inventory</a>
+              <a [routerLink]="['/sales']" routerLinkActive="router-link-active"  mat-button color="accent">Sales</a>
+              <a [routerLink]="['/supplier']" routerLinkActive="router-link-active"  mat-button color="warn">Supplier</a>
             </div>
           </section>
       </mat-toolbar-row>

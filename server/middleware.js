@@ -5,7 +5,12 @@ const APP_SECRET = '__INVENTORY_MANAGEMENT_SYSTEM__';
 const USERS = db.users;
 
 const mappings = {
-    get: ['/api/inventories', '/inventories'],
+    get: [
+        '/api/inventories', 
+        '/inventories',
+        '/supplier',
+        '/sales',
+    ],
   };
   
 

@@ -1,23 +1,182 @@
 <app-toolbar></app-toolbar>
 
-<div class="filter-table">
-  <mat-form-field class="field-search">
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-  </mat-form-field>
-  
-  <mat-paginator #paginator
-  [length]="total"
-  [pageSize]="pageSize"
-  [pageIndex]="pageIndex"
-  [pageSizeOptions]="[5, 10, 25, 100]"
-  (page)="paginate($event)">
-</mat-paginator>
+<div class="inventory-container" [ngSwitch]="pageType">
+  <div *ngSwitchCase="'UPDATE'">
 
+    <div class="form-inventory">
+      <form [formGroup]="inventoryForm" (ngSubmit)="doItem('update')">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input formControlName="name" matInput placeholder="Ex. John Doe">
+          <mat-icon matSuffix>inventory_2</mat-icon>
+          <ng-container *ngIf="control('name')?.errors && control('name')?.dirty || control('name')?.touched">
+            <mat-error *ngFor="let error of control('name')!.errors | errorValidator">{{ error }}</mat-error>
+          </ng-container>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <input formControlName="description" matInput placeholder="Ex. lorem ipsum">
+          <mat-icon matSuffix>description</mat-icon>
+          <ng-container
+            *ngIf="control('description')?.errors && control('description')?.dirty || control('description')?.touched">
+            <mat-error *ngFor="let error of control('description')!.errors | errorValidator">{{ error }}</mat-error>
+          </ng-container>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Image</mat-label>
+          <input formControlName="image" matInput placeholder="http://dummyimage.com/100x100.png/5fa2dd/ffffff">
+          <mat-icon matSuffix>image</mat-icon>
+          <ng-container *ngIf="control('image')?.errors && control('image')?.dirty || control('image')?.touched">
+            <mat-error *ngFor="let error of control('image')!.errors | errorValidator">{{ error }}</mat-error>
+          </ng-container>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Supplier</mat-label>
+          <mat-select formControlName="supplierId">
+            <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</mat-option>
+          </mat-select>
+          <ng-container *ngIf="control('supplierId')?.errors && control('supplierId')?.dirty || control('supplierId')?.touched">
+            <mat-error *ngFor="let error of control('supplierId')!.errors | errorValidator">{{ error }}</mat-error>
+          </ng-container>
+        </mat-form-field>
+
+        <mat-form-field floatLabel="always">
+          <mat-label>Price</mat-label>
+          <input formControlName="price" matInput type="number" class="example-right-align" placeholder="0">
+          <span matTextPrefix>$&nbsp;</span>
+          <ng-container *ngIf="control('price')?.errors && control('price')?.dirty || control('price')?.touched">
+            <mat-error *ngFor="let error of control('price')!.errors | errorValidator">{{ error }}</mat-error>
+          </ng-container>
+        </mat-form-field>
+
+        <mat-form-field floatLabel="always">
+          <mat-label>Qty</mat-label>
+          <input formControlName="quantity" matInput type="number" class="example-right-align" placeholder="0">
+          <span matTextPrefix>
+            <button type="button" (click)="controlStock('minus')" class="minus" mat-icon-button aria-label="delete">
+              <mat-icon>remove</mat-icon>
+            </button>
+          </span>
+          <span matTextSuffix>
+            <button  type="button" (click)="controlStock('plus')" class="plus" mat-icon-button aria-label="delete">
+              <mat-icon>add</mat-icon>
+            </button>
+          </span>
+          <ng-container
+            *ngIf="control('quantity')?.errors && control('quantity')?.dirty || control('quantity')?.touched">
+            <mat-error *ngFor="let error of control('quantity')!.errors | errorValidator">{{ error }}</mat-error>
+          </ng-container>
+        </mat-form-field>
+
+        <div class="button-submit">
+          <button class="submit" type="submit" mat-raised-button>Update Item</button>
+          <button (click)="back()"  type="button" mat-raised-button color="accent" >Back</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <div *ngSwitchCase="'CREATE'">
+
+    <div class="form-inventory">
+      <form [formGroup]="inventoryForm" (ngSubmit)="doItem('create')">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input formControlName="name" matInput placeholder="Ex. John Doe">
+          <mat-icon matSuffix>inventory_2</mat-icon>
+          <ng-container *ngIf="control('name')?.errors && control('name')?.dirty || control('name')?.touched">
+            <mat-error *ngFor="let error of control('name')!.errors | errorValidator">{{ error }}</mat-error>
+          </ng-container>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <input formControlName="description" matInput placeholder="Ex. lorem ipsum">
+          <mat-icon matSuffix>description</mat-icon>
+          <ng-container
+            *ngIf="control('description')?.errors && control('description')?.dirty || control('description')?.touched">
+            <mat-error *ngFor="let error of control('description')!.errors | errorValidator">{{ error }}</mat-error>
+          </ng-container>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Image</mat-label>
+          <input formControlName="image" matInput placeholder="http://dummyimage.com/100x100.png/5fa2dd/ffffff">
+          <mat-icon matSuffix>image</mat-icon>
+          <ng-container *ngIf="control('image')?.errors && control('image')?.dirty || control('image')?.touched">
+            <mat-error *ngFor="let error of control('image')!.errors | errorValidator">{{ error }}</mat-error>
+          </ng-container>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Supplier</mat-label>
+          <mat-select formControlName="supplierId">
+            <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</mat-option>
+          </mat-select>
+          <ng-container *ngIf="control('supplierId')?.errors && control('supplierId')?.dirty || control('supplierId')?.touched">
+            <mat-error *ngFor="let error of control('supplierId')!.errors | errorValidator">{{ error }}</mat-error>
+          </ng-container>
+        </mat-form-field>
+
+        <mat-form-field floatLabel="always">
+          <mat-label>Price</mat-label>
+          <input formControlName="price" matInput type="number" class="example-right-align" placeholder="0">
+          <span matTextPrefix>$&nbsp;</span>
+          <ng-container *ngIf="control('price')?.errors && control('price')?.dirty || control('price')?.touched">
+            <mat-error *ngFor="let error of control('price')!.errors | errorValidator">{{ error }}</mat-error>
+          </ng-container>
+        </mat-form-field>
+
+        <mat-form-field floatLabel="always">
+          <mat-label>Qty</mat-label>
+          <input formControlName="quantity" matInput type="number" class="example-right-align" placeholder="0">
+          <span matTextPrefix>
+            <button type="button" (click)="controlStock('minus')" class="minus" mat-icon-button aria-label="delete">
+              <mat-icon>remove</mat-icon>
+            </button>
+          </span>
+          <span matTextSuffix>
+            <button  type="button" (click)="controlStock('plus')" class="plus" mat-icon-button aria-label="delete">
+              <mat-icon>add</mat-icon>
+            </button>
+          </span>
+          <ng-container
+            *ngIf="control('quantity')?.errors && control('quantity')?.dirty || control('quantity')?.touched">
+            <mat-error *ngFor="let error of control('quantity')!.errors | errorValidator">{{ error }}</mat-error>
+          </ng-container>
+        </mat-form-field>
+
+        <div class="button-submit">
+          <button class="submit" type="submit" mat-raised-button>Add Item</button>
+          <button (click)="back()" type="button" mat-raised-button color="accent" >Back</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <div *ngSwitchDefault>
+    <div class="filter-table">
+      <div class="button-create">
+        <button [disabled]="!admin" (click)="goCreate()" mat-raised-button>Create Item</button>
+      </div>
+      <mat-form-field appearance="outline" class="field-search">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+      </mat-form-field>
+
+      <mat-paginator #paginator [length]="total" [pageSize]="pageSize" [pageIndex]="pageIndex"
+        [pageSizeOptions]="[5, 10, 25, 100]" (page)="paginate($event)">
+      </mat-paginator>
+
+    </div>
+
+    <mat-grid-list cols="6" rowHeight="4:8">
+      <mat-grid-tile *ngFor="let item of items">
+        <app-item-card [isAdmin]="admin" (emit)="cardEvent($event, item)" [item]="item"></app-item-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
 </div>
-
-<mat-grid-list cols="6" rowHeight="4:8">
-    <mat-grid-tile *ngFor="let item of items">
-      <app-item-card (emit)="cardEvent($event, item)" [item]="item"></app-item-card>
-    </mat-grid-tile>
-  </mat-grid-list>

@@ -4,6 +4,7 @@ import { InventoryComponent } from './features/inventory/inventory.component';
 import { LoginComponent } from './features/login/login.component';
 import { roleGuard } from './core/guards/role.guard';
 import { AuthGuard } from './core/guards/auth.guard';
+import { SalesComponent } from './features/sales/sales.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/inventory'},
@@ -21,6 +22,30 @@ const routes: Routes = [
     component: InventoryComponent,
     loadChildren: () =>
       import('./features/inventory/inventory.module').then((m) => m.InventoryModule),
+  },
+  { 
+    path: 'inventory/create', 
+    canActivate: [AuthGuard, roleGuard],
+    data: { expectedRole: ['admin'] },
+    component: InventoryComponent,
+    loadChildren: () =>
+      import('./features/inventory/inventory.module').then((m) => m.InventoryModule),
+  },
+  { 
+    path: 'inventory/update', 
+    canActivate: [AuthGuard, roleGuard],
+    data: { expectedRole: ['admin'] },
+    component: InventoryComponent,
+    loadChildren: () =>
+      import('./features/inventory/inventory.module').then((m) => m.InventoryModule),
+  },
+  { 
+    path: 'sales', 
+    canActivate: [AuthGuard, roleGuard],
+    data: { expectedRole: ['admin', 'staff'] },
+    component: SalesComponent,
+    loadChildren: () =>
+      import('./features/sales/sales.module').then((m) => m.SalesModule),
   },
   { path: '**', pathMatch: 'full', redirectTo: '/inventory'},
 ];

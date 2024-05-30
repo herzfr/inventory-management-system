@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -11,6 +12,10 @@ export class ToolbarComponent {
 
   get user() {
     return this.authservice.getUser()
+  }
+
+  logout() {
+    this.authservice.logout()
   }
   
 }

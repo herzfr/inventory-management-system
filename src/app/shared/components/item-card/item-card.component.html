@@ -1,4 +1,7 @@
 <mat-card class="item-card">
+    <button *ngIf="isAdmin" (click)="onEmit('DELETE')" class="delete" mat-icon-button aria-label="delete">
+        <mat-icon>delete</mat-icon>
+      </button>
     <mat-card-header>
       <mat-card-title>{{ item?.name }}</mat-card-title>
       <mat-card-subtitle>Supplier : {{ item?.supplierId }}</mat-card-subtitle>
@@ -10,6 +13,6 @@
     </mat-card-content>
     <mat-card-actions class="card-action">
       <button (click)="onEmit('VIEW')" mat-button>VIEW</button>
-      <button (click)="onEmit('EDIT')"mat-button>UPDATE</button>
+      <button *ngIf="isAdmin" (click)="onEmit('EDIT')"mat-button>UPDATE</button>
     </mat-card-actions>
   </mat-card>

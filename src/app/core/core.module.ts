@@ -6,6 +6,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InventoriesService } from './services/inventories.service';
 import { AuthInterceptor } from './interceptor/auth-interceptor.interceptor';
 import { SalesService } from './services/sales.service';
+import { SupplierService } from './services/supplier.service';
 
 // Core Module
 // ----------------------------------------------------------------------------------------------------------------
@@ -19,7 +20,7 @@ import { SalesService } from './services/sales.service';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  }, AuthService, UserService, InventoriesService, SalesService]
+  }, AuthService, UserService, InventoriesService, SalesService, SupplierService]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

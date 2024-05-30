@@ -13,6 +13,9 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 export const API_URL = new InjectionToken<string>('apiUrl');
 
 @NgModule({
@@ -27,7 +30,9 @@ export const API_URL = new InjectionToken<string>('apiUrl');
     ScrollingModule,
     OverlayModule,
 
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [{ provide: API_URL, useValue: environment.apiUrl }, 
     MAT_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER,

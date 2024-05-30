@@ -8,9 +8,10 @@ import { InventoryItem } from '../../interfaces/inventory.type';
 })
 export class ItemCardComponent {
   @Input() item: InventoryItem | undefined;
+  @Input() isAdmin: boolean = false;
   @Output() emit: EventEmitter<any> = new EventEmitter<any>();
 
-  onEmit(event: 'VIEW' | 'EDIT') {
+  onEmit(event: 'VIEW' | 'EDIT' | 'DELETE') {
     this.emit.next(event)
   }
 }

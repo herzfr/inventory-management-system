@@ -45,6 +45,7 @@ export class AuthService {
     sessionStorage.removeItem(SessionStorageName.ROLES)
     sessionStorage.removeItem(SessionStorageName.USER)
     this.isLogged.next(false)
+    window.location.reload();
   }
 
   getToken(): string | null {
@@ -65,6 +66,14 @@ export class AuthService {
   isAuthenticated(): Observable<boolean> {
     this.checkLogged()
     return this.isLogged.asObservable()
+  }
+
+  isAdmin() {
+    return this.getRoles().some((e) => e.includes("admin"))
+  }
+
+  isStaff() {
+    return this.getRoles().some((e) => e.includes("staff"))
   }
 
 }
