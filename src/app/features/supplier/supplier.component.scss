@@ -1,0 +1,17 @@
+.supplier-container {
+    width: inherit;
+
+    .panel-filter {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        padding: 0 10px;
+        margin: 10px 0;
+        justify-content: space-between;
+
+        .button-filter {
+            gap: 10px;
+            display: flex;
+        }
+    }
+}

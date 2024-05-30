@@ -1,0 +1,21 @@
+.detail-card {
+    max-width: 600px;
+
+    mat-card-content {
+        p {
+            margin-top: 10px;
+        }
+    }
+}
+
+.price {
+    font-weight: 700 !important;
+}
+
+.quantity {
+    color: green !important;
+}
+
+.low-stock {
+    color: red !important;
+  }

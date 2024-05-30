@@ -2,6 +2,41 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.
 
+### Running Server
+```bash
+npm run server
+````
+
+### Running Angular
+```bash
+npm run start | ng serve
+````
+
+### Username & Password
+```bash
+{
+    "users": [
+    {
+      "username": "adriana",
+      "password": "123456",
+      "roles": ["admin", "staff"],
+      "name": "Adriana Romana"
+    },
+    {
+      "username": "john",
+      "password": "654321",
+      "roles": ["admin"],
+      "name": "John Doe"
+    },
+    {
+      "username": "evan",
+      "password": "123123",
+      "roles": ["staff"],
+      "name": "Evan Smith"
+    }
+}
+````
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
@@ -25,3 +60,35 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Project Structure /src directory
+```bash
+src/
+├── app/
+│   ├── core/                 # Core module (singleton services, etc.)
+│   │   ├── services/
+│   │   ├── interceptors/
+│   │   └── guards/
+│   ├── features/             # Feature modules
+│   │   ├── inventory/
+│   │   └── login/
+│   │   └── sales/
+│   │   └── supplier/
+│   ├── shared/               # Shared module (common components, pipes, directives)
+│   ├── assets/               # Static assets (images, icons, etc.)
+│   ├── environments/         # Environment-specific configuration
+│   ├── app-routing.module.ts # App-level routing module
+│   ├── app.component.html    # Root component template
+│   ├── app.component.ts      # Root component class
+│   └── app.module.ts         # Root module
+├── assets/                   # Global static assets
+├── environments/             # Environment configuration files
+├── favicon.ico
+├── index.html                # Main HTML file
+├── main.ts                   # Main entry point
+├── polyfills.ts              # Polyfills for browser compatibility
+├── styles.scss               # Global styles
+├── test.ts                   # Test entry point
+└── tsconfig.app.json         # TypeScript configuration for the app
+
+```

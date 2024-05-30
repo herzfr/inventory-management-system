@@ -1,0 +1,25 @@
+<p>
+    <mat-toolbar clas>
+      <mat-toolbar-row class="primart-row">
+        <span>Inventory Management System</span>
+        <span class="example-spacer"></span>
+        <div class="toolbar-side-menu">
+            <span>{{ user.name }}</span>
+            <button (click)="logout()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                <mat-icon>logout</mat-icon>
+              </button>
+        </div>
+      </mat-toolbar-row>
+  
+      <mat-toolbar-row class="secondary-row">
+        <section>
+            <div class="menu-row">
+              <a [routerLink]="['/inventory']" routerLinkActive="router-link-active"  mat-button color="primary">Inventory</a>
+              <a [routerLink]="['/sales']" routerLinkActive="router-link-active"  mat-button color="accent">Sales</a>
+              <a [routerLink]="['/supplier']" routerLinkActive="router-link-active"  mat-button color="warn">Supplier</a>
+            </div>
+          </section>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </p>
+  

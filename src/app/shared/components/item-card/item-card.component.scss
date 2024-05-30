@@ -1,0 +1,49 @@
+.item-card {
+    max-width: 300px;
+    min-width: 200px;
+
+    button.delete {
+        position: absolute;
+        right: 0px;
+        color: indianred;
+        }
+
+        mat-card-content {
+            p.price {
+                font-weight: 700;
+                margin-bottom: 2px;
+                text-align: right;
+                padding-top: 10px;
+              }
+        
+              p.qty {
+                display: flex;
+                justify-content: space-between;
+        
+                span {
+                    font-weight: 700;
+                    color: green;
+                }
+        
+                .low-stock {
+                    color: red !important;
+                  }
+              }
+        }
+
+        img {
+            max-width: 200px;
+        }
+
+
+      .card-action {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        button {
+            font-size: 0.7rem;
+        }
+      }
+  }
+  

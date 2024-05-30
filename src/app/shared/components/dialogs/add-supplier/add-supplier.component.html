@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Add Supplier</h1>
+<div mat-dialog-content>
+    <p>Please fill in supplier's name, contact information.</p>
+
+    <form [formGroup]="supplierForm" (ngSubmit)="submit()">
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput placeholder="Ex. John Doe">
+            <mat-icon matSuffix>person</mat-icon>
+            <ng-container *ngIf="control('name')?.errors && control('name')?.dirty || control('name')?.touched">
+                <mat-error *ngFor="let error of control('name')!.errors | errorValidator">{{ error }}</mat-error>
+            </ng-container>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Contact</mat-label>
+            <input formControlName="contact" matInput placeholder="Ex. lorem ipsum">
+            <mat-icon matSuffix>contact</mat-icon>
+            <ng-container
+                *ngIf="control('contact')?.errors && control('contact')?.dirty || control('contact')?.touched">
+                <mat-error *ngFor="let error of control('contact')!.errors | errorValidator">{{ error }}</mat-error>
+            </ng-container>
+        </mat-form-field>
+
+        <button [disabled]="supplierForm.invalid" class="submit" type="submit" mat-raised-button>Add Supplier</button>
+
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+</div>
