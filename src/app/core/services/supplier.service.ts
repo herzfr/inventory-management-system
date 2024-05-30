@@ -19,7 +19,6 @@ export class SupplierService {
 
   initSupplier() {
     this.userservice.supplier().subscribe((res) => {
-      console.log(res);
       this.suppliers = res as Supplier[];
       this.supplierSubject.next(this.suppliers);
       this.setNextId();
@@ -35,6 +34,10 @@ export class SupplierService {
 
   getSuppliers() {
     return this.suppliers;
+  }
+
+  getSupplier(id: number) {
+    return this.supplierSubject.getValue().find(f => f.id === id);
   }
 
   getObsSuppliers(): Observable<Supplier[]> {

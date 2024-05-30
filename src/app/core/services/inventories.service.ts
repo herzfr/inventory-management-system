@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { InventoryItem } from 'src/app/shared/interfaces/inventory.type';
 import { UserService } from './user.service';
 import { v4 as uuidv4 } from 'uuid';
+import { SupplierService } from './supplier.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ export class InventoriesService {
   private items: InventoryItem[] = [];
   private stockThreshold = 10;
 
-  constructor(private userservice: UserService) {
+  constructor(private userservice: UserService, private supplierservice: SupplierService) {
     this.initInventory();
   }
 
@@ -47,6 +48,7 @@ export class InventoriesService {
     return itemsPerPage.map((item) => ({
       ...item,
       lowStock: item.quantity < this.stockThreshold,
+      supplier: this.supplierservice.getSupplier(item.supplierId?? 0)?.name
     }));
   }
 
