@@ -1,4 +1,4 @@
-.sales-container {
+.supplier-container {
     width: inherit;
 
     .panel-filter {
@@ -7,20 +7,11 @@
         align-items: center;
         padding: 0 10px;
         margin: 10px 0;
+        justify-content: space-between;
+
+        .button-filter {
+            gap: 10px;
+            display: flex;
+        }
     }
-}
-
-
-table {
-    width: 100%;
-}
-
-.mat-mdc-form-field {
-    font-size: 14px;
-    width: 100%;
-}
-
-td,
-th {
-    width: 25%;
 }

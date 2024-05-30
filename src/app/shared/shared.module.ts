@@ -5,11 +5,11 @@ import { ErrorValidatorPipe } from './pipes/error-validator.pipe';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ItemCardComponent } from './components/item-card/item-card.component';
 import { ViewItemComponent } from './components/dialogs/view-item/view-item.component';
-import { ConfirmationComponent } from './components/dialogs/confirmation/confirmation.component';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UuidMaskPipe } from './pipes/uuid-mask.pipe';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
+import { AddSupplierComponent } from './components/dialogs/add-supplier/add-supplier.component';
 
 // Shared Module
 // ----------------------------------------------------------------------------------------------------------------
@@ -23,11 +23,11 @@ import { CustomDatePipe } from './pipes/custom-date.pipe';
     ToolbarComponent,
     ItemCardComponent,
     ViewItemComponent,
-    ConfirmationComponent,
     UuidMaskPipe,
     CustomDatePipe,
+    AddSupplierComponent,
   ],
-  imports: [CommonModule, MaterialModule, RouterModule, FormsModule],
+  imports: [CommonModule, MaterialModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
     // share module
     MaterialModule,
@@ -41,6 +41,7 @@ import { CustomDatePipe } from './pipes/custom-date.pipe';
     ToolbarComponent,
     ItemCardComponent,
     ViewItemComponent,
+    AddSupplierComponent
   ],
   providers: [
     {

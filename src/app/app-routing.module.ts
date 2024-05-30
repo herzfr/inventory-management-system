@@ -5,6 +5,7 @@ import { LoginComponent } from './features/login/login.component';
 import { roleGuard } from './core/guards/role.guard';
 import { AuthGuard } from './core/guards/auth.guard';
 import { SalesComponent } from './features/sales/sales.component';
+import { SupplierComponent } from './features/supplier/supplier.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/inventory'},
@@ -46,6 +47,14 @@ const routes: Routes = [
     component: SalesComponent,
     loadChildren: () =>
       import('./features/sales/sales.module').then((m) => m.SalesModule),
+  },
+  { 
+    path: 'supplier', 
+    canActivate: [AuthGuard, roleGuard],
+    data: { expectedRole: ['admin', 'staff'] },
+    component: SupplierComponent,
+    loadChildren: () =>
+      import('./features/supplier/supplier.module').then((m) => m.SupplierModule),
   },
   { path: '**', pathMatch: 'full', redirectTo: '/inventory'},
 ];

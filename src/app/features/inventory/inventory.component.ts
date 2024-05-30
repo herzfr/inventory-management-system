@@ -156,11 +156,11 @@ export class InventoryComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(ViewItemComponent, {
       data: item,
     });
-    dialogRef.afterClosed()
+    dialogRef.afterClosed();
   }
 
   get admin() {
-    return this.authservice.isAdmin()
+    return this.authservice.isAdmin();
   }
 
   get items() {
@@ -172,7 +172,7 @@ export class InventoryComponent implements OnInit, AfterViewInit {
   }
 
   get suppliers() {
-    return this.supplierservice.getSuppliers()
+    return this.supplierservice.getSuppliers();
   }
 
   get total() {
@@ -182,5 +182,4 @@ export class InventoryComponent implements OnInit, AfterViewInit {
   get totalPages(): number {
     return Math.ceil(this.total / this.pageSize);
   }
-
 }

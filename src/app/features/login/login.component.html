@@ -32,7 +32,9 @@
             <mat-divider></mat-divider>
         </mat-card-content>
         <mat-card-actions>
-            <button (click)="login()" mat-button [disabled]="username.invalid || password.invalid || username.pristine || password.pristine || loading">Sign In</button>
+            <button (click)="login()" mat-button
+                [disabled]="username.invalid || password.invalid || username.pristine || password.pristine || loading">Sign
+                In</button>
             <mat-error *ngIf="invalid">Username or Password incorrect !!</mat-error>
         </mat-card-actions>
         <mat-card-footer>

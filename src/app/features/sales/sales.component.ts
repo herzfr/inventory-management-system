@@ -1,17 +1,6 @@
-import {
-  AfterViewInit,
-  Component,
-  OnInit,
-  ViewChild,
-  inject,
-} from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { SalesService } from 'src/app/core/services/sales.service';
-import {
-  Sale,
-  SaleWithItemIventory,
-} from 'src/app/shared/interfaces/sales.type';
-import { InventoriesService } from 'src/app/core/services/inventories.service';
-import { InventoryItem } from 'src/app/shared/interfaces/inventory.type';
+import { Sale } from 'src/app/shared/interfaces/sales.type';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -32,7 +21,6 @@ export class SalesComponent implements OnInit, AfterViewInit {
 
   constructor(
     private salesService: SalesService,
-    private inventoryService: InventoriesService,
     private supplierService: SupplierService
   ) {}
 
@@ -82,27 +70,25 @@ export class SalesComponent implements OnInit, AfterViewInit {
       const saleDateUTC = new Date(sale.date); // Parse the date string as UTC
       const saleDate = new Date(
         saleDateUTC.getTime() + saleDateUTC.getTimezoneOffset() * 60000
-      ); // Convert UTC to local date
+      );
 
       const start = this.startDate ? new Date(this.startDate) : null;
       const end = this.endDate ? new Date(this.endDate) : null;
 
-      // Check if sale date is within the selected range
       if (start && saleDate < start) {
         return false;
       }
+
       if (end && saleDate > end) {
         return false;
       }
 
-      // Check if sale's item matches the search input
       if (
         this.search ||
         !sale.itemId.includes(this.search.trim().toLowerCase())
       ) {
         return false;
       }
-
       return true;
     });
 

@@ -38,7 +38,8 @@
           <mat-select formControlName="supplierId">
             <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</mat-option>
           </mat-select>
-          <ng-container *ngIf="control('supplierId')?.errors && control('supplierId')?.dirty || control('supplierId')?.touched">
+          <ng-container
+            *ngIf="control('supplierId')?.errors && control('supplierId')?.dirty || control('supplierId')?.touched">
             <mat-error *ngFor="let error of control('supplierId')!.errors | errorValidator">{{ error }}</mat-error>
           </ng-container>
         </mat-form-field>
@@ -61,7 +62,7 @@
             </button>
           </span>
           <span matTextSuffix>
-            <button  type="button" (click)="controlStock('plus')" class="plus" mat-icon-button aria-label="delete">
+            <button type="button" (click)="controlStock('plus')" class="plus" mat-icon-button aria-label="delete">
               <mat-icon>add</mat-icon>
             </button>
           </span>
@@ -73,7 +74,7 @@
 
         <div class="button-submit">
           <button class="submit" type="submit" mat-raised-button>Update Item</button>
-          <button (click)="back()"  type="button" mat-raised-button color="accent" >Back</button>
+          <button (click)="back()" type="button" mat-raised-button color="accent">Back</button>
         </div>
       </form>
     </div>
@@ -116,7 +117,8 @@
           <mat-select formControlName="supplierId">
             <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</mat-option>
           </mat-select>
-          <ng-container *ngIf="control('supplierId')?.errors && control('supplierId')?.dirty || control('supplierId')?.touched">
+          <ng-container
+            *ngIf="control('supplierId')?.errors && control('supplierId')?.dirty || control('supplierId')?.touched">
             <mat-error *ngFor="let error of control('supplierId')!.errors | errorValidator">{{ error }}</mat-error>
           </ng-container>
         </mat-form-field>
@@ -139,7 +141,7 @@
             </button>
           </span>
           <span matTextSuffix>
-            <button  type="button" (click)="controlStock('plus')" class="plus" mat-icon-button aria-label="delete">
+            <button type="button" (click)="controlStock('plus')" class="plus" mat-icon-button aria-label="delete">
               <mat-icon>add</mat-icon>
             </button>
           </span>
@@ -151,7 +153,7 @@
 
         <div class="button-submit">
           <button class="submit" type="submit" mat-raised-button>Add Item</button>
-          <button (click)="back()" type="button" mat-raised-button color="accent" >Back</button>
+          <button (click)="back()" type="button" mat-raised-button color="accent">Back</button>
         </div>
       </form>
     </div>
