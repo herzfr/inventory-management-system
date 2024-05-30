@@ -6,7 +6,16 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatDialogModule} from '@angular/material/dialog';
 
+// CDK Prepare
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 export const material = [
     MatButtonModule,
@@ -15,7 +24,17 @@ export const material = [
     MatProgressBarModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatGridListModule,
+    MatToolbarModule,
+    MatPaginatorModule,
+    MatTooltipModule,
+    MatAutocompleteModule,
+    MatDialogModule,
+
+    // CDK
+    ScrollingModule,
+    OverlayModule
 ]
 
 @NgModule({

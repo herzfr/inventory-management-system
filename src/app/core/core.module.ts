@@ -2,7 +2,10 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { InventoriesService } from './services/inventories.service';
+import { AuthInterceptor } from './interceptor/auth-interceptor.interceptor';
+import { SalesService } from './services/sales.service';
 
 // Core Module
 // ----------------------------------------------------------------------------------------------------------------
@@ -12,7 +15,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [HttpClientModule],
-  providers: [AuthService, UserService]
+  providers: [ {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }, AuthService, UserService, InventoriesService, SalesService]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

@@ -5,5 +5,7 @@ export interface InventoryItem {
     price: number;
     quantity: number;
     supplierId?: number;
+    image: string;
+    lowStock?: boolean;
   }
   

@@ -1,0 +1,10 @@
+.filter-table {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+
+    .field-search {
+        width: 100%;
+    }
+}

@@ -1,1 +1,23 @@
-<p>inventory works!</p>
+<app-toolbar></app-toolbar>
+
+<div class="filter-table">
+  <mat-form-field class="field-search">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+  
+  <mat-paginator #paginator
+  [length]="total"
+  [pageSize]="pageSize"
+  [pageIndex]="pageIndex"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  (page)="paginate($event)">
+</mat-paginator>
+
+</div>
+
+<mat-grid-list cols="6" rowHeight="4:8">
+    <mat-grid-tile *ngFor="let item of items">
+      <app-item-card (emit)="cardEvent($event, item)" [item]="item"></app-item-card>
+    </mat-grid-tile>
+  </mat-grid-list>

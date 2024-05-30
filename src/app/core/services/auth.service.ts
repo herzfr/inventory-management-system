@@ -1,5 +1,6 @@
 // src/app/core/services/auth.service.ts
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { SessionStorageName } from 'src/app/shared/const/session_storage.const';
 import { UserLoginInterface, UserWithoutPassword } from 'src/app/shared/interfaces/user.types';
 
@@ -8,7 +9,17 @@ import { UserLoginInterface, UserWithoutPassword } from 'src/app/shared/interfac
 })
 export class AuthService {
 
-  constructor() {}
+  isLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
+
+  constructor() {
+    this.checkLogged()
+  }
+
+  checkLogged() {
+    if (this.getToken() !== null) {
+      this.isLogged.next(true)
+    }
+  }
 
   
   doLogged(user: UserLoginInterface) {
@@ -33,6 +44,7 @@ export class AuthService {
     sessionStorage.removeItem(SessionStorageName.TOKEN)
     sessionStorage.removeItem(SessionStorageName.ROLES)
     sessionStorage.removeItem(SessionStorageName.USER)
+    this.isLogged.next(false)
   }
 
   getToken(): string | null {
@@ -50,8 +62,9 @@ export class AuthService {
     return JSON.parse(sessionStorage.getItem(SessionStorageName.USER) || '')
   }
 
-  isAuthenticated(): boolean {
-    return this.getToken() !== null ? true : false
+  isAuthenticated(): Observable<boolean> {
+    this.checkLogged()
+    return this.isLogged.asObservable()
   }
 
 }
