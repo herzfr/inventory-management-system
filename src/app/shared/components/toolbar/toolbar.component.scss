@@ -1,0 +1,27 @@
+.primart-row {
+    justify-content: space-between;
+    background: crimson;
+    color: white;
+
+    .toolbar-side-menu {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.secondary-row {
+    justify-content: center;
+    
+    .menu-row {
+        display: flex;
+        gap: 3rem;
+    }
+}
+
+.router-link-active {
+    font-weight: bold !important;
+    border-bottom: 2px solid #ded7d7 !important;
+    background: #ff232314;
+    width: 300px;
+  }
+  

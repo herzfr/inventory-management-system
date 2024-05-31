@@ -1,0 +1,27 @@
+.login-card {
+  max-width: 400px;
+
+  mat-card-subtitle {
+    font-size: 1rem;
+    color: #353535;
+  }
+
+  mat-card-content {
+    display: grid;
+    gap: 2rem;
+
+    .form-container {
+      mat-form-field {
+        width: 100%;
+
+        mat-error {
+          font-size: 0.7rem;
+        }
+      }
+    }
+  }
+
+  mat-card-actions {
+    justify-content: space-between;
+  }
+}

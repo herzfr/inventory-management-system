@@ -1,0 +1,18 @@
+<mat-card class="item-card">
+    <button *ngIf="isAdmin" (click)="onEmit('DELETE')" class="delete" mat-icon-button aria-label="delete">
+        <mat-icon>delete</mat-icon>
+      </button>
+    <mat-card-header>
+      <mat-card-title>{{ item?.name }}</mat-card-title>
+      <mat-card-subtitle>Supplier : {{ item?.supplier }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="item?.image" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p class="price">{{ item?.price |currency:'USD':'$'}}</p>
+      <p class="qty">Quantity <span [class.low-stock]="item?.lowStock">{{ item?.quantity }}</span></p>
+    </mat-card-content>
+    <mat-card-actions class="card-action">
+      <button (click)="onEmit('VIEW')" mat-button>VIEW</button>
+      <button (click)="onEmit('EDIT')"mat-button>UPDATE</button>
+    </mat-card-actions>
+  </mat-card>

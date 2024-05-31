@@ -1,0 +1,70 @@
+<app-toolbar></app-toolbar>
+
+<div class="sales-container">
+
+    <div class="left-side">
+        <div class="panel-filter">
+            <mat-form-field appearance="outline">
+                <mat-label>Filter</mat-label>
+                <input [(ngModel)]="search" matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+                <mat-hint>Search some Date, Quantity, Total</mat-hint>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input [(ngModel)]="startDate" matStartDate placeholder="Start date"
+                        (dateChange)="startDateChanged($event)">
+                    <input [(ngModel)]="endDate" matEndDate placeholder="End date" (dateChange)="endDateChanged($event)">
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+    
+            <button class="refresh-button" (click)="refreshFilter()" mat-raised-button>
+                <mat-icon>refresh</mat-icon>
+            </button>
+        </div>
+    
+    
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+    
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                    <td mat-cell *matCellDef="let row"> {{row.itemId | uuidMask }} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                    <td mat-cell *matCellDef="let row"> {{row.date | customDate}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="quantity">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
+                    <td mat-cell *matCellDef="let row"> {{row.quantity}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="total">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
+                    <td mat-cell *matCellDef="let row"> {{row.total | currency:'USD': '$ '}} </td>
+                </ng-container>
+    
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+            </table>
+    
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+    </div>
+
+    <div class="right-side">
+        <app-charts *ngIf="this.dataSource.data.length > 0" [sales]="this.dataSource.data"></app-charts>
+    </div>
+
+</div>
