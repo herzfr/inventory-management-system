@@ -4,13 +4,14 @@
         <mat-card-header>
           <mat-card-title-group>
             <mat-card-title>{{inventory.name}}</mat-card-title>
-            <mat-card-subtitle class="price">{{inventory.price |currency:'USD':true}}</mat-card-subtitle>
+            <mat-card-subtitle class="price">{{inventory.price |currency:'USD': '$'}}</mat-card-subtitle>
             <mat-card-subtitle [class.low-stock]="inventory.lowStock" class="quantity">Quantity {{inventory.quantity}}</mat-card-subtitle>
             <img mat-card-sm-image [src]="inventory.image" >
           </mat-card-title-group>
         </mat-card-header>
         <mat-card-content>
           <p>{{inventory.description}}</p>
+          <p *ngIf="inventory.supplierId" class="supplier">Supplier <span class="supplier-name">{{ getSupplier(inventory.supplierId)?.name }}</span></p>
         </mat-card-content>
       </mat-card>
 </div>

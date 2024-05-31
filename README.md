@@ -1,16 +1,33 @@
-# InventoryManagementSystem
+# Inventory Management System (IMS)
+###### Desciption Project
+
+This project aims to develop an Inventory Management System (IMS) for small retail businesses using Angular. IMS will simplify the inventory management process, increase accuracy, and improve user experience.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.
+
+Under [Node.JS](https://nodejs.org/en) version 16.20.1.
+With [NPM](https://nodejs.org/en) version 9.8.0.
+
+### Install Node Module
+```bash
+npm install
+
+#optional
+| npm install | npm install --force | npm install --legacy-peer-deps
+```
 
 ### Running Server
 ```bash
 npm run server
-````
+```
 
 ### Running Angular
 ```bash
-npm run start | ng serve
-````
+ng serve
+
+#optional
+npm run start
+```
 
 ### Username & Password
 ```bash
@@ -92,3 +109,11 @@ src/
 └── tsconfig.app.json         # TypeScript configuration for the app
 
 ```
+
+## Plugin
+| Plugin | Source |
+| ------ | ------ |
+| Angular Material v16 | [https://v16.material.angular.io/][PlDb] |
+| Apex Chart | [https://apexcharts.com/][PlGh] |
+| JSON Server | [https://www.npmjs.com/package/json-server][PlGd] |
+

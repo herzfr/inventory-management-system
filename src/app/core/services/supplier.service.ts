@@ -49,4 +49,9 @@ export class SupplierService {
     this.suppliers.push(supplier);
     this.supplierSubject.next(this.suppliers);
   }
+
+  deleteSupplier(id: number) {
+    this.suppliers = this.suppliers.filter(supplier => supplier.id !== id);
+    this.supplierSubject.next(this.suppliers);
+  }
 }

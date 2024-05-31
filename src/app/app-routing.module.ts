@@ -35,7 +35,7 @@ const routes: Routes = [
   { 
     path: 'inventory/update', 
     canActivate: [AuthGuard, roleGuard],
-    data: { expectedRole: ['admin'] },
+    data: { expectedRole: ['admin',  'staff'] },
     component: InventoryComponent,
     loadChildren: () =>
       import('./features/inventory/inventory.module').then((m) => m.InventoryModule),

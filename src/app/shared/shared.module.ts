@@ -10,6 +10,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UuidMaskPipe } from './pipes/uuid-mask.pipe';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
 import { AddSupplierComponent } from './components/dialogs/add-supplier/add-supplier.component';
+import { ChartsComponent } from './components/charts/charts.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+
 
 // Shared Module
 // ----------------------------------------------------------------------------------------------------------------
@@ -26,8 +29,9 @@ import { AddSupplierComponent } from './components/dialogs/add-supplier/add-supp
     UuidMaskPipe,
     CustomDatePipe,
     AddSupplierComponent,
+    ChartsComponent,
   ],
-  imports: [CommonModule, MaterialModule, RouterModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, MaterialModule, RouterModule, FormsModule, ReactiveFormsModule, NgApexchartsModule],
   exports: [
     // share module
     MaterialModule,
@@ -41,7 +45,8 @@ import { AddSupplierComponent } from './components/dialogs/add-supplier/add-supp
     ToolbarComponent,
     ItemCardComponent,
     ViewItemComponent,
-    AddSupplierComponent
+    AddSupplierComponent,
+    ChartsComponent
   ],
   providers: [
     {

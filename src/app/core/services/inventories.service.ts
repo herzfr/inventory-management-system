@@ -3,12 +3,14 @@ import { InventoryItem } from 'src/app/shared/interfaces/inventory.type';
 import { UserService } from './user.service';
 import { v4 as uuidv4 } from 'uuid';
 import { SupplierService } from './supplier.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InventoriesService {
   private items: InventoryItem[] = [];
+  private itemsSubject: BehaviorSubject<InventoryItem[]> = new BehaviorSubject<InventoryItem[]>([]);
   private stockThreshold = 10;
 
   constructor(private userservice: UserService, private supplierservice: SupplierService) {
@@ -18,6 +20,7 @@ export class InventoriesService {
   initInventory() {
     this.userservice.inventories().subscribe((res) => {
       this.items = res;
+      this.itemsSubject.next(this.items)
     });
   }
 
@@ -52,6 +55,10 @@ export class InventoriesService {
     }));
   }
 
+  getItemBySupplierId(supplierId: number) {
+    return this.items.filter(e => e.supplierId === supplierId)
+  }
+
   getLengthItem() {
     return this.items.length;
   }
@@ -60,9 +67,14 @@ export class InventoriesService {
     return this.items.find((f) => f.id == id);
   }
 
+  getItemObs() {
+    return this.itemsSubject.asObservable()
+  }
+
   addItem(item: InventoryItem) {
     item.id = uuidv4();
     this.items.push(item);
+    this.itemsSubject.next(this.items)
   }
 
   editItem(updatedItem: InventoryItem) {
@@ -70,9 +82,11 @@ export class InventoriesService {
     if (index !== -1) {
       this.items[index] = updatedItem;
     }
+    this.itemsSubject.next(this.items)
   }
 
   deleteItem(id: string) {
     this.items = this.items.filter((item) => item.id !== id);
+    this.itemsSubject.next(this.items)
   }
 }

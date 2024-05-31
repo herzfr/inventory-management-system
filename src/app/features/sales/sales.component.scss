@@ -1,5 +1,12 @@
 .sales-container {
     width: inherit;
+    display: flex;
+
+    .left-side,
+    .right-side {
+        flex: 1;
+        padding: 20px;
+    }
 
     .panel-filter {
         display: flex;
@@ -7,6 +14,21 @@
         align-items: center;
         padding: 0 10px;
         margin: 10px 0;
+
+        .refresh-button {
+            min-height: 5rem;
+            padding: 0;
+            margin: 0;
+            width: inherit;
+
+            mat-icon {
+                padding: 0;
+                margin: 0;
+                font-size: 1.8rem;
+                width: 100%;
+                height: 40%;
+            }
+        }
     }
 }
 
