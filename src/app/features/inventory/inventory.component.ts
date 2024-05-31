@@ -132,7 +132,10 @@ export class InventoryComponent implements OnInit, AfterViewInit {
   }
 
   delete(id: string) {
-    this.inventorieservice.deleteItem(id);
+    if (this.admin) {
+      this.inventorieservice.deleteItem(id);
+    }
+    return;
   }
 
   goUpdate(id: string) {

@@ -17,6 +17,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 // CDK Prepare
 import { ScrollingModule } from '@angular/cdk/scrolling';
@@ -44,6 +45,7 @@ export const material = [
   MatInputModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatExpansionModule,
 
   // CDK
   ScrollingModule,
