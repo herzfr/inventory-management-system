@@ -110,10 +110,10 @@ src/
 
 ```
 
-## PAGE ROLE
-| User  |  Login | Inventory | Sales | Supplier
-| ------------ | ------------ |
-| Admin  | Sign In  | View, Create, Update, Delete | View | View, Create, Update, Delete |
-| Staff  | Sign In  | View, Update | View |  View, Update |
-
+## Plugin
+| Plugin | Source |
+| ------ | ------ |
+| Angular Material v16 | [https://v16.material.angular.io/][PlDb] |
+| Apex Chart | [https://apexcharts.com/][PlGh] |
+| JSON Server | [https://www.npmjs.com/package/json-server][PlGd] |
 
